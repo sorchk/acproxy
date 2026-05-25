@@ -1,0 +1,23 @@
+# ACP Proxy 配置示例
+#
+# 配置文件位于 ~/.acproxy/config.yaml
+
+pi:
+  container: "agent-pi"
+  socket: "/tmp/acproxy/pi.sock"
+
+opencode:
+  container: "agent-opencode"
+  socket: "/tmp/acproxy/opencode.sock"
+
+kimi:
+  container: "agent-kimi"
+  socket: "/tmp/acproxy/kimi.sock"
+
+hermes:
+  container: "agent-hermes"
+  socket: "/tmp/acproxy/hermes.sock"
+
+kiro:
+  container: "agent-kiro"
+  socket: "/tmp/acproxy/kiro.sock"

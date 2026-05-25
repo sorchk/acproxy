@@ -1,0 +1,27 @@
+
+name: agents-group
+networks:
+    1panel-network:
+        external: true
+services:
+  pi:
+    build: .
+    image: sorc/sandbox-node:24
+    container_name: pi
+    hostname: xavier-pi
+    networks:
+      - 1panel-network
+    user: "1000:1000"
+    environment:
+      - MULTICA_TOKEN=${MULTICA_TOKEN_PI}
+      - MULTICA_SERVER_URL=${MULTICA_SERVER_URL}
+      - MULTICA_APP_URL=${MULTICA_APP_URL}
+      - LOG_LEVEL=info
+    volumes:
+      - ./pi/home:/home/sorc
+      - ./pi/setup:/docker-entrypoint-init.d
+      - /datadisk/test:/datadisk/test
+    tty: true
+    stdin_open: true
+    command: >
+      bash -c "source ~/.bashrc && multica daemon start --foreground" 

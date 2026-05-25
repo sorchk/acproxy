@@ -1,0 +1,9 @@
+FROM sorc/acproxy:latest
+
+ARG TARGETARCH
+ARG PI_VERSION=latest
+ENV TZ=Asia/Shanghai
+
+RUN npm install -g --ignore-scripts @earendil-works/pi-coding-agent@${PI_VERSION}
+
+CMD ["socket_bridge", "--socket=/root/.pi/pi.sock", "--", "pi", "acp"]

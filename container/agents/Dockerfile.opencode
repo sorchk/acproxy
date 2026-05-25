@@ -1,0 +1,10 @@
+FROM sorc/acproxy:latest
+
+ARG TARGETARCH
+ARG OPENCODE_VERSION=latest
+
+ENV TZ=Asia/Shanghai
+
+RUN npm install -g opencode-ai@${OPENCODE_VERSION}
+
+CMD ["socket_bridge", "--socket=/root/.opencode/opencode.sock", "--", "opencode", "acp"]
