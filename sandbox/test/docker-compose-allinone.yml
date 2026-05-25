@@ -1,0 +1,26 @@
+name: agents-group
+networks:
+  1panel-network:
+    external: true
+services:
+  agents:
+    image: sorc/sandbox-node:24
+    container_name: agents
+    hostname: dept-as
+    networks:
+      - 1panel-network
+    ports:
+      - "11911:11911"
+    user: "1000:1000"
+    environment:
+      - MULTICA_TOKEN=${MULTICA_TOKEN}
+      - MULTICA_SERVER_URL=${MULTICA_SERVER_URL}
+      - MULTICA_APP_URL=${MULTICA_APP_URL}
+      - LOG_LEVEL=info
+    volumes:
+      - ./agents/home:/home/sorc
+      - ./agents/setup:/docker-entrypoint-init.d
+      - /datadisk/test:/datadisk/test
+      - /home/sorc/workspaces:/home/sorc/workspaces
+    command: >
+      bash -c "source ~/.bashrc && oc && multica daemon start --foreground"

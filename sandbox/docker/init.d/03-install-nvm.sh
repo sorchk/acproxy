@@ -4,7 +4,7 @@ set -e
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.bashrc
 # 安装 node
-nvm install 24
+nvm install 26
 # 安装 uv uvx
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source ~/.bashrc

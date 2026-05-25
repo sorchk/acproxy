@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 IMAGE_NAME="sorc/sandbox-node"
-IMATE_VERSION="24"
+IMATE_VERSION="26"
 DOCKERFILE_PATH="$(dirname "$0")"
 BUILDER_NAME="multiarch-builder"
 

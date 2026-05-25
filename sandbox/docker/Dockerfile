@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 ENV TZ=Asia/Shanghai
 ENV LANG=zh_CN.UTF-8
@@ -9,16 +9,16 @@ RUN apt update && apt install -y curl git wget locales tzdata tmux && \
     locale-gen zh_CN.UTF-8 && \
     rm -rf /var/lib/apt/lists/* && \
     userdel -r ubuntu 2>/dev/null || true && \
-    groupadd -g 1000 sorc && \
+    groupadd sorc 2>/dev/null || true && \
     useradd -m -u 1000 -g 1000 -s /bin/bash sorc
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
-COPY init.d/ /docker-entrypoint-init.d/
-RUN find /docker-entrypoint-init.d -name '*.sh' -exec chmod +x {} \;
+COPY init.d/ /init.d/
+RUN find /init.d -name '*.sh' -exec chmod +x {} \;
 
-RUN chown -R sorc:sorc /usr/local/bin /docker-entrypoint-init.d
+RUN chown -R sorc:sorc /usr/local/bin /init.d
 
 USER sorc
 WORKDIR /home/sorc
