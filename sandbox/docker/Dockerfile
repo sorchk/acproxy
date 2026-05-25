@@ -9,6 +9,7 @@ RUN apt update && apt install -y curl git wget locales tzdata tmux && \
     locale-gen zh_CN.UTF-8 && \
     rm -rf /var/lib/apt/lists/* && \
     userdel -r ubuntu 2>/dev/null || true && \
+    groupadd -g 1000 sorc && \
     useradd -m -u 1000 -g 1000 -s /bin/bash sorc
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

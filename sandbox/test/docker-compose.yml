@@ -24,4 +24,28 @@ services:
     tty: true
     stdin_open: true
     command: >
-      bash -c "source ~/.bashrc && multica daemon start --foreground" 
+      bash -c "source ~/.bashrc && multica daemon start --foreground"
+  opencode:
+    build: .
+    image: sorc/sandbox-node:24
+    container_name: opencode
+    hostname: xavier-oc
+    networks:
+      - 1panel-network
+    ports:
+      - 11911:11911
+    user: "1000:1000"
+    environment:
+      - MULTICA_TOKEN=${MULTICA_TOKEN_OPENCODE}
+      - MULTICA_SERVER_URL=${MULTICA_SERVER_URL}
+      - MULTICA_APP_URL=${MULTICA_APP_URL}
+      - LOG_LEVEL=info
+    volumes:
+      - ./opencode/home:/home/sorc
+      - ./opencode/setup:/docker-entrypoint-init.d
+      - /datadisk/test:/datadisk/test
+      - /home/sorc/workspaces:/home/sorc/workspaces
+    tty: true
+    stdin_open: true
+    command: >
+      bash -c "source ~/.bashrc && oc && multica daemon start --foreground"
