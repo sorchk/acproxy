@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-IMAGE_NAME="sorc/sandbox-node:26.04"
+IMAGE_NAME="sorc/sandbox-node:24.04"
 DOCKERFILE_PATH="$(dirname "$0")"
 
 echo "开始构建镜像: ${IMAGE_NAME}"

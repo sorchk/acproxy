@@ -1,13 +1,17 @@
 #!/bin/bash
 set -e
-# 安装 nvm
+
+export NVM_DIR="$HOME/.nvm"
+export PATH="$HOME/.local/bin:$PATH"
+
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-source ~/.bashrc
-# 安装 node
-nvm install 26
-# 安装 uv uvx
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+nvm install 24
+
 curl -LsSf https://astral.sh/uv/install.sh | sh
-source ~/.bashrc
+[ -s "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
 
 echo "   nvm: $(nvm --version)"
 echo "   node: $(node --version)"

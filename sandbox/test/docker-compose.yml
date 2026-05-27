@@ -9,9 +9,9 @@ services:
     image: sorc/sandbox-node:24
     container_name: pi
     hostname: xavier-pi
+    restart: always
     networks:
       - 1panel-network
-    user: "1000:1000"
     environment:
       - MULTICA_TOKEN=${MULTICA_TOKEN_PI}
       - MULTICA_SERVER_URL=${MULTICA_SERVER_URL}
@@ -21,6 +21,7 @@ services:
       - ./pi/home:/home/sorc
       - ./pi/setup:/docker-entrypoint-init.d
       - /datadisk/test:/datadisk/test
+      - /var/run/docker.sock:/var/run/docker.sock
     tty: true
     stdin_open: true
     command: >
@@ -30,11 +31,11 @@ services:
     image: sorc/sandbox-node:24
     container_name: opencode
     hostname: xavier-oc
+    restart: always
     networks:
       - 1panel-network
     ports:
       - 11911:11911
-    user: "1000:1000"
     environment:
       - MULTICA_TOKEN=${MULTICA_TOKEN_OPENCODE}
       - MULTICA_SERVER_URL=${MULTICA_SERVER_URL}
@@ -45,6 +46,8 @@ services:
       - ./opencode/setup:/docker-entrypoint-init.d
       - /datadisk/test:/datadisk/test
       - /home/sorc/workspaces:/home/sorc/workspaces
+      - /opt/docker:/opt/docker
+      - /var/run/docker.sock:/var/run/docker.sock
     tty: true
     stdin_open: true
     command: >
