@@ -1,4 +1,5 @@
-FROM ubuntu:24.04
+ARG VERSION
+FROM ubuntu:${VERSION}
 
 ENV TZ=Asia/Shanghai
 ENV LANG=zh_CN.UTF-8

@@ -1,7 +1,12 @@
 #!/bin/bash
 set -e
+
 IMAGE_NAME="sorc/sandbox-node"
-IMATE_VERSION="24.04"
+IMATE_VERSION=$1
+# 如果参数为空，则使用 24.04 标签
+if [ -z "$IMATE_VERSION" ]; then
+    IMATE_VERSION="24.04"
+fi
 DOCKERFILE_PATH="$(dirname "$0")"
 BUILDER_NAME="multiarch-builder"
 
@@ -23,6 +28,7 @@ echo ">>> 步骤 3: 构建多架构镜像并推送到 Docker Hub"
 docker-buildx build \
     --platform linux/amd64,linux/arm64 \
     --push \
+    --build-arg VERSION="${IMATE_VERSION}" \
     --tag "${IMAGE_NAME}:${IMATE_VERSION}" \
     --tag "${IMAGE_NAME}:latest" \
     --builder "${BUILDER_NAME}" \

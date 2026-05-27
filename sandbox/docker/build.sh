@@ -1,7 +1,11 @@
 #!/bin/bash
 set -e
-
-IMAGE_NAME="sorc/sandbox-node:24.04"
+VERSION=$1
+# 如果参数为空，则使用 24.04" 标签
+if [ -z "$VERSION" ]; then
+    VERSION="24.04"
+fi
+IMAGE_NAME="sorc/sandbox-node:${VERSION}"
 DOCKERFILE_PATH="$(dirname "$0")"
 
 echo "开始构建镜像: ${IMAGE_NAME}"
