@@ -9,5 +9,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+export PATH="\$HOME/.local/bin:\$PATH"
 EOF
 fi
