@@ -6,7 +6,7 @@ networks:
 services:
   pi:
     build: .
-    image: sorc/sandbox-node:24
+    image: sorc/sandbox-node:24.04
     container_name: pi
     hostname: xavier-pi
     restart: always
@@ -30,7 +30,7 @@ services:
 # bash -c "source ~/.bashrc && multica config set server_url ${MULTICA_SERVER_URL} && multica config set app_url ${MULTICA_APP_URL} && multica login --token ${MULTICA_TOKEN_PI}"
   opencode:
     build: .
-    image: sorc/sandbox-node:24
+    image: sorc/sandbox-node:24.04
     container_name: opencode
     hostname: xavier-oc
     restart: always

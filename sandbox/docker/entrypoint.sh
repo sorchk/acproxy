@@ -7,7 +7,7 @@ if [ -S /var/run/docker.sock ]; then
   chmod 660 /var/run/docker.sock
 fi
 chown sorc:sorc /home/sorc
-MARKER_FILE="/home/sorc/.container_initialized"
+MARKER_FILE="$HOME/.container_initialized"
 if [ ! -f "$MARKER_FILE" ]; then
   echo "=> Setting up init scripts"
   INIT_DIR="/docker-entrypoint-init.d"
