@@ -6,5 +6,8 @@ cd ~/
 npm install -g ctx7@latest 
 npm install -g @colbymchenry/codegraph
 npm install -g @playwright/cli@latest
+source ~/.bashrc
+cd ~/
+playwright-cli install --skills
 echo "=> MCP 安装完成"
 echo "   MCP:  $(codegraph --version)"
