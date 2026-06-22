@@ -10,7 +10,7 @@ ENV TZ=Asia/Shanghai \
 # 改用 xtradeb PPA 提供原生 .deb，支持 amd64/arm64/armhf（Google Chrome 没有 ARM64 Linux 版）。
 RUN apt update && apt install -y --no-install-recommends \
       curl git wget locales tzdata tmux gosu ca-certificates \
-      software-properties-common apt-transport-https \
+      software-properties-common apt-transport-https sudo \
       default-mysql-client postgresql-client-16 redis-tools \
       fonts-liberation \
       python3 python3-venv python3-dev \
@@ -22,9 +22,9 @@ RUN apt update && apt install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && userdel -r ubuntu 2>/dev/null || true \
     && groupadd -g 1000 sorc \
-    && useradd -m -u 1000 -g 1000 -s /bin/bash sorc \
-    && usermod -aG sudo sorc \
-    && echo "sorc ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/sorc
+    && useradd -m -u 1000 -g 1000 -G sudo -s /bin/bash sorc \
+    && echo "sorc ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/sorc \
+    && chmod 0440 /etc/sudoers.d/sorc
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 COPY init.d/ /docker-entrypoint-init.d/
