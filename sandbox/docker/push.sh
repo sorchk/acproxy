@@ -3,9 +3,9 @@ set -e
 
 IMAGE_NAME="sorc/sandbox-node"
 IMATE_VERSION=$1
-# 如果参数为空，则使用 24.04 标签
+# 如果参数为空，则使用 3.23 标签
 if [ -z "$IMATE_VERSION" ]; then
-    IMATE_VERSION="24.04"
+    IMATE_VERSION="3.23"
 fi
 DOCKERFILE_PATH="$(dirname "$0")"
 BUILDER_NAME="multiarch-builder"
