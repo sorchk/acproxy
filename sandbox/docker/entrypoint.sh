@@ -15,10 +15,13 @@ if [ ! -f "$MARKER_FILE" ]; then
     for f in $(find "$INIT_DIR" -name '*.sh' | sort); do
       if [ -x "$f" ]; then
         echo "=> Executing init script: $f"
-        gosu sorc "$f"
+        # 使用 login shell（bash -l）启动，自动加载 /etc/profile → ~/.profile → ~/.bashrc，
+        # 无论当前用户是 sorc 还是 root，都通过各自 $HOME 的 .profile 链加载环境变量，
+        # 无需在每个脚本内显式 source ~/.bashrc。
+        gosu sorc bash -lc "$f"
       else
         echo "=> Sourcing init script: $f"
-        gosu sorc bash -c ". '$f'"
+        gosu sorc bash -lc ". '$f'"
       fi
     done
   fi
