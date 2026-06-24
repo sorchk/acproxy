@@ -13,18 +13,18 @@ ENV TZ=Asia/Shanghai \
 # - mariadb-client 替代 default-mysql-client（Alpine 无 Oracle MySQL 客户端）。
 # - gcompat/libgcc/libstdc++ 提供 glibc 兼容层，用于运行官方 go/gh/jdk 的 linux-x64 tarball。
 # - postgresql-client 使用元包，自动跟随 Alpine 当前 LTS 主版本。
+# - font-liberation 提供英文字体；font-noto-cjk 覆盖简繁中日韩字符，
+#   二者结合可避免 Playwright/Chromium 截图出现方框（tofu）。
 RUN apk add --no-cache \
       bash bash-completion \
       curl git wget ca-certificates \
       tzdata tmux gosu sudo \
       musl-locales \
       python3 python3-dev py3-pip py3-virtualenv \
-      mariadb-client \
-      postgresql-client \
-      redis \
-      chromium nss \
-      font-liberation \
+      mariadb-client postgresql-client redis chromium xvfb nss \
+      font-liberation font-noto-cjk \
       gcompat libgcc libstdc++ \
+    && fc-cache -f \
     && ln -sf /usr/bin/python3 /usr/bin/python \
     && mkdir -p /etc/sudoers.d \
     && addgroup -g 1000 sorc \
