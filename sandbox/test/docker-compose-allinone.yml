@@ -12,7 +12,6 @@ services:
       - 1panel-network
     ports:
       - "11911:11911"
-    user: "1000:1000"
     environment:
       - MULTICA_TOKEN=${MULTICA_TOKEN}
       - MULTICA_SERVER_URL=${MULTICA_SERVER_URL}
@@ -20,7 +19,7 @@ services:
       - LOG_LEVEL=info
     volumes:
       - ./agents/home:/home/sorc
-      - ./agents/setup:/docker-entrypoint-init.d
+      - ./agents/setup:/docker-entrypoint-init.d/99-setup
       - /datadisk/test:/datadisk/test
       - /home/sorc/workspaces:/home/sorc/workspaces
     command: >

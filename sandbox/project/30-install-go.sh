@@ -5,7 +5,7 @@ source ~/.bashrc
 # Go 中国镜像下载地址
 GO_VERSION="1.23.4"
 GO_TARBALL="go${GO_VERSION}.linux-amd64.tar.gz"
-GO_DOWNLOAD_URL="https://golang.google.cn/dl/${GO_TARBALL}"
+GO_DOWNLOAD_URL="https://go.dev/dl/${GO_TARBALL}"
 GO_INSTALL_DIR="$HOME/.local/go"
 
 # 已安装则跳过

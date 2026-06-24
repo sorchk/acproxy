@@ -19,7 +19,7 @@ services:
       - LOG_LEVEL=info
     volumes:
       - ./pi/home:/home/sorc
-      - ./pi/setup:/docker-entrypoint-init.d
+      - ./pi/setup:/docker-entrypoint-init.d/99-setup
       - /datadisk/test:/datadisk/test
       - /opt/docker:/opt/docker
       - /var/run/docker.sock:/var/run/docker.sock
